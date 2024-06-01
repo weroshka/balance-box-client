@@ -1,0 +1,65 @@
+@import '/src/assets/styles/_variables.scss';
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	> .wrapperInner {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 50px;
+
+		width: 100%;
+		max-width: 70%;
+		border-radius: 30px;
+		box-shadow: $bx-16;
+
+		padding: 50px 70px;
+
+		> .info {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			flex: 1;
+
+			> div {
+				color: $dark-accent;
+				font-size: 15px;
+				font-weight: 600;
+				text-transform: uppercase;
+				> h1 {
+					color: $black;
+					font-size: 45px;
+					font-weight: 600;
+					line-height: 100%;
+				}
+
+				> h2 {
+					color: $accent;
+				}
+			}
+
+			> form {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+				flex: 1;
+			}
+		}
+		> .img {
+			max-width: 50%;
+			> img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}

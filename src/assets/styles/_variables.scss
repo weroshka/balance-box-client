@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+$accent: #9a3836;
+
+$light-accent: lighten($accent, 20%);
+$hard-light-accent: lighten($accent, 50%);
+
+$dark-accent: darken($accent, 10%);
+$hard-dark-accent: darken($accent, 20%);
+
+$white: #ffffff;
+$dark-white: #f9f9f9;
+
+$black: #000000;
+$light-black: lighten($black, 50%);
+$hard-light-black: lighten($black, 80%);
+
+$blue: #4a607a;
+$blue-hard: #3362ab;
+$blue-dark: #0d1c41;
+
+$orange: #f28a1a;
+$light-orange: #ff7a0030;
+
+$red: rgb(255, 0, 0);
+
+$green: #038300;
+$light-green: #daffed;
+
+$grey: #9c9c9c;
+
+$bx-accent: 0 4px 4px rgba($accent, 0.25);
+$bx-16: 0 3px 6px rgb(0 0 0 / 43%);
+
+$default-font: 'Abel', sans-serif;
+
+$transition: all 0.4s ease-in-out;
+
+$modal-radius: 15px;
+$card-radius: 15px;
+
+$mobile: 768px;
+
+$container: (
+	width: 100%,
+	max-width: 90%,
+	margin: 0 auto
+);
+
+@mixin applyStyles($styles) {
+	@each $property, $value in $styles {
+		#{$property}: $value;
+	}
+}
+
+$purple: '';

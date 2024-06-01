@@ -1,0 +1,106 @@
+@import '/src/assets/styles/_variables.scss';
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	margin-top: 50px;
+
+	> .wrapperInner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 35px;
+
+		width: 100%;
+		/* max-width: 70%; */
+		/* border-radius: 30px; */
+		/* box-shadow: $bx-16; */
+
+		padding: 50px 70px;
+
+		> .title {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 10px;
+			position: relative;
+			> p {
+				color: $blue-dark;
+				font-size: 28px;
+				font-weight: 600;
+				line-height: 100%;
+			}
+			> a {
+				position: absolute;
+				left: -40px;
+				top: 2px;
+				> svg {
+					width: 24px;
+					height: 24px;
+					fill: $blue-dark;
+
+					transition: $transition;
+
+					&:hover {
+						fill: $blue;
+					}
+				}
+			}
+		}
+
+		> .addPanel {
+			display: flex;
+			width: 100%;
+		}
+
+		.table {
+			border: 1px solid $black;
+			border-radius: 15px;
+			border-collapse: collapse;
+			overflow: hidden;
+			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+
+			width: 100%;
+
+			> thead {
+				color: $white;
+				font-size: 20px;
+				font-weight: 600;
+				background-color: $accent;
+			}
+
+			th {
+				padding: 5px 10px;
+				border: 1px solid $black;
+
+				&.edit {
+					cursor: pointer;
+					fill: $accent;
+					transition: $transition;
+
+					&:hover {
+						fill: $light-accent;
+					}
+				}
+			}
+		}
+	}
+}
+
+.preloadBlock {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	height: 100vh;
+}

@@ -1,0 +1,165 @@
+@import '/src/assets/styles/_variables.scss';
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	margin-top: 50px;
+
+	> .wrapperInner {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 50px;
+
+		width: 100%;
+		max-width: 70%;
+		border-radius: 30px;
+		box-shadow: $bx-16;
+
+		padding: 50px 70px;
+
+		> .profile {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			width: 100%;
+
+			> .userName {
+				color: $accent;
+				font-size: 36px;
+				font-weight: 600;
+				line-height: 100%;
+			}
+
+			> .userInfo {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+
+				> p {
+					color: $black;
+					font-size: 24px;
+					font-weight: 400;
+					line-height: 100%;
+				}
+
+				> ul,
+				li {
+					list-style: none;
+				}
+
+				> ul {
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+
+					> li {
+						display: flex;
+						flex-direction: row;
+						gap: 10px;
+
+						> span {
+							color: $blue-hard;
+							font-size: 18px;
+							font-weight: 400;
+							line-height: 100%;
+
+							width: 70px;
+						}
+
+						> p,
+						a {
+							color: $blue-hard;
+							font-size: 20px;
+							font-weight: 600;
+							line-height: 100%;
+							text-decoration: none;
+
+							transition: $transition;
+						}
+
+						a:hover {
+							color: $blue;
+						}
+					}
+				}
+			}
+
+			> .work {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				gap: 20px;
+
+				margin-top: 20px;
+
+				> form {
+					display: flex;
+					flex-direction: column;
+					gap: 15px;
+
+					> .title {
+						color: $blue-dark;
+						font-size: 24px;
+						font-weight: 400;
+						line-height: 100%;
+					}
+
+					> .calendar {
+						width: 100%;
+
+						> div {
+							width: 100%;
+						}
+						> div > div > input {
+							background-color: none;
+							border: 1px solid rgba($accent, 0.3);
+							color: $black;
+							font-size: 16px;
+							padding: 10px;
+							border-radius: 10px;
+							outline: none;
+							width: 100%;
+
+							&:focus {
+								border-color: rgba($accent, 0.5);
+							}
+
+							&::placeholder {
+								color: $light-black;
+							}
+						}
+
+						> div > div > div {
+							right: 0px;
+							top: calc(50% - 17px);
+						}
+					}
+
+					> button {
+						margin-top: 15px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.preloadBlock {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	height: 100vh;
+}
