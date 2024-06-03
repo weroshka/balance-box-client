@@ -6,7 +6,9 @@ const NotFound = () => {
 	return (
 		<>
 			<Layout>
-				<main className={styles.main}>404 Not found</main>
+				<main className={styles.main}>
+					<img src='404.png' alt='404' />
+				</main>
 			</Layout>
 		</>
 	)

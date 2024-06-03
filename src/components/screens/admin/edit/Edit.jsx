@@ -1,5 +1,6 @@
 import vocabularyService from '/src/services/vocabulary.service'
 import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -16,6 +17,8 @@ import styles from './Edit.module.scss'
 import { useEditEntityFrom } from './useEditEntityFrom.js'
 
 const Edit = () => {
+	const [errorResponse, setErrorResponse] = useState('')
+
 	const pathArr = useLocation().pathname.split('/')
 	const entity = pathArr[3]
 	const id = pathArr[4]
@@ -30,7 +33,8 @@ const Edit = () => {
 	const { errors, handleSubmit, isEddLoading, onSubmit, register, control } =
 		useEditEntityFrom({
 			id: id,
-			key: entity
+			key: entity,
+			setErrorResponse
 		})
 
 	const { deleteMutate, isDeleteMutateLoading } = useTableElementDelete({
@@ -95,6 +99,7 @@ const Edit = () => {
 						<Button type='main' size='autoWidth'>
 							Изменить
 						</Button>
+						<div className={styles.error}>{errorResponse}</div>
 						<Button
 							type='warning'
 							size='autoWidth'

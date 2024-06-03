@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 
 import { useAuth } from '/src/hooks/useAuth'
 
-export const useAuthForm = () => {
+export const useAuthForm = ({ setErrorResponse }) => {
 	const {
 		register,
 		handleSubmit,
@@ -27,6 +27,7 @@ export const useAuthForm = () => {
 		},
 		onError: e => {
 			console.log(e)
+			setErrorResponse(e.message)
 		}
 	})
 

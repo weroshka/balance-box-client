@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 
 import { useTableElement } from '/src/hooks/useTableElement'
 
-export const useEditEntityFrom = ({ key, id }) => {
+export const useEditEntityFrom = ({ key, id, setErrorResponse }) => {
 	const [isBegin, setIsBegin] = useState(true)
 	const { tableElement, isTableElementLoading } = useTableElement({
 		id: id,
@@ -35,7 +35,7 @@ export const useEditEntityFrom = ({ key, id }) => {
 			reset()
 		},
 		onError: e => {
-			console.log(e)
+			setErrorResponse(e.message)
 		}
 	})
 

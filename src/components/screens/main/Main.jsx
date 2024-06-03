@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import Button from '/src/components/ui/button/Button'
 import Field from '/src/components/ui/field/Field'
 
@@ -7,9 +9,12 @@ import styles from './Main.module.scss'
 import { useAuthForm } from './useAuthForm.js'
 
 const Main = () => {
-	const { errors, handleSubmit, isLoading, onSubmit, register } = useAuthForm(
-		{}
-	)
+	const [errorResponse, setErrorResponse] = useState('')
+
+	const { errors, handleSubmit, isLoading, onSubmit, register } = useAuthForm({
+		setErrorResponse
+	})
+
 	return (
 		<Layout>
 			<main className={styles.main}>
@@ -41,6 +46,7 @@ const Main = () => {
 								placeholder='Пароль'
 							/>
 							<Button size='autoWight'>Войти</Button>
+							<div className={styles.error}>{errorResponse}</div>
 						</form>
 					</div>
 					<div className={styles.img}>

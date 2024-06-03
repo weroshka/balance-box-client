@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 import styles from './ExpenseCard.module.scss'
 
 const ExpenseCard = ({ data }) => {
@@ -19,7 +17,10 @@ const ExpenseCard = ({ data }) => {
 			<div className={styles.info}>
 				<p>Тип: {data.type_expenses.NAME}</p>
 				<p>Стоимость: {data.COST} руб.</p>
-				<Link to={data.SALES_RECEIPT}>Открыть документ</Link>
+				<p>Отдел: {data.group.NAME}.</p>
+				<a href={data.SALES_RECEIPT} target='_blank'>
+					Открыть документ
+				</a>
 			</div>
 		</div>
 	)

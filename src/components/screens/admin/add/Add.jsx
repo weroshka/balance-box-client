@@ -1,5 +1,6 @@
 import vocabularyService from '/src/services/vocabulary.service'
 import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -15,6 +16,8 @@ import styles from './Add.module.scss'
 import { useAddEntityFrom } from './useAddEntityFrom'
 
 const Add = () => {
+	const [errorResponse, setErrorResponse] = useState('')
+
 	const entity = useLocation().pathname.split('/')[3]
 
 	const vocabulary = useQuery({
@@ -25,7 +28,7 @@ const Add = () => {
 	const { table, isTableLoading } = useTableField({ key: entity })
 
 	const { errors, handleSubmit, isAddLoading, onSubmit, register, control } =
-		useAddEntityFrom({ key: entity })
+		useAddEntityFrom({ key: entity, setErrorResponse })
 
 	if (vocabulary.isLoading || isTableLoading) {
 		return (
@@ -83,6 +86,7 @@ const Add = () => {
 						<Button type='main' size='autoWidth'>
 							Добавить
 						</Button>
+						<div className={styles.error}>{errorResponse}</div>
 					</form>
 				</div>
 			</main>

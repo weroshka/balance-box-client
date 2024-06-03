@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
-export const useAddEntityFrom = ({ key }) => {
+export const useAddEntityFrom = ({ key, setErrorResponse }) => {
 	const {
 		register,
 		handleSubmit,
@@ -23,12 +23,17 @@ export const useAddEntityFrom = ({ key }) => {
 		},
 		onError: e => {
 			console.log(e)
+			setErrorResponse(e.message)
 		}
 	})
 
 	const onSubmit = data => {
-		// console.log(data)
-		mutate(data)
+		let isEmpty = true
+		Object.keys(data).forEach(key => {
+			if (data[key] || false) isEmpty = false
+		})
+		if (!isEmpty) mutate(data)
+		else setErrorResponse('Заполните все поля')
 	}
 
 	return useMemo(

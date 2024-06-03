@@ -24,13 +24,12 @@ const Panel = () => {
 						<FaMoneyCheckAlt />
 						<p>Расходы</p>
 					</Link>
-
+				</div>
+				<div className={styles.row}>
 					<Link to='/admin/list/time_period'>
 						<FaRegCalendarAlt />
 						<p>Кварталы</p>
 					</Link>
-				</div>
-				<div className={styles.row}>
 					<Link to='/admin/list/type_expenses'>
 						<FaMoneyCheckAlt />
 						<p>Типы расходов</p>
@@ -39,6 +38,12 @@ const Panel = () => {
 					<Link to='/admin/list/type_expenses_and_time_period'>
 						<FaLayerGroup />
 						<p>Макс. размер трат</p>
+					</Link>
+				</div>
+				<div className={styles.row}>
+					<Link to='/admin/list/vocabulary'>
+						<FaLayerGroup />
+						<p>Словари</p>
 					</Link>
 
 					<Link to='/admin/list/staff_group'>

@@ -7,7 +7,7 @@ class TableService {
 
 			return data
 		} catch (error) {
-			throw new Error(error)
+			throw new Error(error.response.data.message)
 		}
 	}
 
@@ -17,7 +17,7 @@ class TableService {
 
 			return data
 		} catch (error) {
-			throw new Error(error)
+			throw new Error(error.response.data.message)
 		}
 	}
 
@@ -27,7 +27,7 @@ class TableService {
 
 			return data
 		} catch (error) {
-			throw new Error(error)
+			throw new Error(error.response.data.message)
 		}
 	}
 
@@ -37,7 +37,7 @@ class TableService {
 
 			return data
 		} catch (error) {
-			throw new Error(error)
+			throw new Error(error.response.data.message)
 		}
 	}
 	async updateEntity(key, id, params) {
@@ -46,7 +46,7 @@ class TableService {
 
 			return data
 		} catch (error) {
-			throw new Error(error)
+			throw new Error(error.response.data.message)
 		}
 	}
 	async deleteElement(key, id) {
@@ -55,7 +55,7 @@ class TableService {
 
 			return data
 		} catch (error) {
-			throw new Error(error)
+			throw new Error(error.response.data.message)
 		}
 	}
 }

@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Controller } from 'react-hook-form'
 import { FaRegCalendar } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ReactSelect from 'react-select'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
@@ -24,7 +24,20 @@ import styles from './Profile.module.scss'
 import { useAddExpenseForm } from './useAddExpenseForm.js'
 
 const Profile = () => {
+	const getParams = {}
+
+	const { search } = useLocation()
+	search
+		.replace('?', '')
+		.split('&')
+		.forEach(param => {
+			const [key, value] = param.split('=')
+			getParams[key] = value
+		})
+
 	const [date, setDate] = useState(new Date())
+
+	const [errorResponse, setErrorResponse] = useState('')
 
 	const { typeExpenseList, isTypeExpenseLoading } = useTypeExpense()
 
@@ -34,7 +47,8 @@ const Profile = () => {
 		useAddExpenseForm({
 			staffId: user ? user.ID : -1,
 			userLoading: isLoading,
-			date
+			date,
+			setErrorResponse
 		})
 
 	if (isLoading || isAddLoading || isTypeExpenseLoading) {
@@ -65,14 +79,19 @@ const Profile = () => {
 						<div className={styles.userInfo}>
 							<p>Информация</p>
 							<ul>
-								<li>
-									<span>Отдел:</span>
-									<p>
-										{user.staff_group
-											.map(group => group.work_group.NAME)
-											.join(', ')}
-									</p>
-								</li>
+								{user.staff_group.length > 0 ? (
+									<li>
+										<span>Отдел:</span>
+										<p>
+											{user.staff_group
+												.map(group => group.work_group.NAME)
+												.join(', ')}
+										</p>
+									</li>
+								) : (
+									<></>
+								)}
+
 								<li>
 									<span>Почта:</span>
 									<Link to={`mailto:${user.EMAIL}`}>{user.EMAIL}</Link>
@@ -86,6 +105,14 @@ const Profile = () => {
 								encType='multipart/form-data'
 							>
 								<p className={styles.title}>Добавить покупку</p>
+
+								{getParams.s === 'Y' ? (
+									<div className={styles.success}>
+										Покупка успешно добавлена!
+									</div>
+								) : (
+									<></>
+								)}
 								<Controller
 									name='typeExpenseId'
 									control={control}
@@ -108,6 +135,30 @@ const Profile = () => {
 										)
 									}}
 								/>
+
+								<Controller
+									name='groupId'
+									control={control}
+									render={({ field: { value, onChange } }) => {
+										return (
+											<ReactSelect
+												classNamePrefix='select2-selection'
+												placeholder='Отдел'
+												title='Отдел'
+												noOptionsMessage={({ inputValue }) =>
+													!inputValue ? '' : 'Нет подходящих отделов'
+												}
+												options={user.staff_group.map(group => ({
+													value: group.work_group.ID,
+													label: group.work_group.NAME
+												}))}
+												value={value}
+												onChange={onChange}
+											/>
+										)
+									}}
+								/>
+
 								<div className={styles.calendar}>
 									<DatePicker
 										showIcon
@@ -131,7 +182,7 @@ const Profile = () => {
 									options={{
 										required: 'Введите стоимость'
 									}}
-									type='text'
+									type='number'
 									placeholder='Стоимость'
 								/>
 								<Field
@@ -143,10 +194,12 @@ const Profile = () => {
 									}}
 									type='file'
 									placeholder='Документ'
+									accept='.xlsx,.docx,.pdf,image/*'
 								/>
 								<Button type='white' size='autoWight'>
 									ДОБАВИТЬ
 								</Button>
+								<div className={styles.error}>{errorResponse}</div>
 								<Button
 									size='autoWight'
 									clickHandler={e => {
