@@ -7,7 +7,7 @@ const NotFound = () => {
 		<>
 			<Layout>
 				<main className={styles.main}>
-					<img src='404.png' alt='404' />
+					<img src='/404.png' alt='404' />
 				</main>
 			</Layout>
 		</>
